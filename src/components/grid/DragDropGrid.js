@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DraggableGridItem from './DraggableGridItem';
+import './Grid.css';
 
 class DragDropGrid extends React.Component {
     constructor(props) {
@@ -18,11 +20,6 @@ class DragDropGrid extends React.Component {
     // you can't access an item being dragged from the dragOver event, only the target, so lets keep track of what's being dragged
     dragStarted(dragIndex, e) {
         this.setState({ currentDragIndex: dragIndex });
-    }
-
-    gridDragEnd(e){
-        e.preventDefault();
-        e.dataTransfer.clearData();
     }
 
     gridDragOver(e){
@@ -45,14 +42,18 @@ class DragDropGrid extends React.Component {
     render(){
         return (
             <div className="grid" 
-                onDragEnd={this.gridDragEnd} 
                 onDragOver={this.gridDragOver}>
                 { this.props.children }
                 {
                     this.props.items.map((item, index) => {
                         return (
-                            <p>{index}</p>
-                        )
+                            <DraggableGridItem key={item.key} index={index} 
+                                currentDragIndex={this.state.currentDragIndex}
+                                dragStarted={this.dragStarted} 
+                                itemDropped={this.itemDropped}>
+                                <div>{index}</div>
+                            </DraggableGridItem>
+                        );
                     })
                 }
             </div>

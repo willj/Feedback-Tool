@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FileUploadHandler from './FileUploadHandler';
-import DragDropGrid from './DragDropGrid';
+import FileUploadHandler from '../fileupload/FileUploadHandler';
+import DragDropGrid from '../grid/DragDropGrid';
 
 const Files = ({files, onNewFile, onChange, onMove, onDelete}) => {
     return (
