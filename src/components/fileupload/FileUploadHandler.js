@@ -52,13 +52,13 @@ class FileUploadHandler extends React.Component {
                     ? e.dataTransfer.items[i].getAsEntry() 
                     : e.dataTransfer.items[i].webkitGetAsEntry();
                 
-                if (item.isFile){
+                if (item && item.isFile){
                     item.file(this.addFile, error => {
                         this.appendErrorMessage(`${item.name} failed`);
                     });
                 }
 
-                if (item.isDirectory){                    
+                if (item && item.isDirectory){                    
                     this.addFilesFromDirectory(item);
                 }
             }

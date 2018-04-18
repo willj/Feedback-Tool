@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DraggableGridItem from './DraggableGridItem';
+import Image from '../image/Image';
 import './Grid.css';
 
 class DragDropGrid extends React.Component {
@@ -13,7 +14,6 @@ class DragDropGrid extends React.Component {
 
         this.dragStarted = this.dragStarted.bind(this);
         this.itemDropped = this.itemDropped.bind(this);
-        this.gridDragEnd = this.gridDragEnd.bind(this);
         this.gridDragOver = this.gridDragOver.bind(this);
     }
 
@@ -41,8 +41,7 @@ class DragDropGrid extends React.Component {
 
     render(){
         return (
-            <div className="grid" 
-                onDragOver={this.gridDragOver}>
+            <div className="grid" onDragOver={this.gridDragOver}>
                 { this.props.children }
                 {
                     this.props.items.map((item, index) => {
@@ -51,7 +50,7 @@ class DragDropGrid extends React.Component {
                                 currentDragIndex={this.state.currentDragIndex}
                                 dragStarted={this.dragStarted} 
                                 itemDropped={this.itemDropped}>
-                                <div>{index}</div>
+                                <Image image={item} index={index} onChange={this.props.onChange} onDelete={this.props.onDelete} />
                             </DraggableGridItem>
                         );
                     })
