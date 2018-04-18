@@ -1,5 +1,8 @@
 export default {
     title: 'My Project',
     files: [],
-    shareUrl: ''
+    project: {
+        url: '',
+        error: ''
+    }
 };

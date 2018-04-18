@@ -1,4 +1,4 @@
-.grid-title {
+.project-title {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -6,12 +6,17 @@
     margin: 10px 0;
     padding: 5px 2px;
     font-size: 2em;
+    border-bottom: 1px dotted #c0c0c0;
 }
 
-.grid-title:hover {
+.project-title:hover {
     border: 1px solid #c0c0c0;
 }
 
-.grid-title:focus {
+.project-title:focus {
     border: 1px solid #333333;
+}
+
+.project-error {
+    color: #ff0000;
 }

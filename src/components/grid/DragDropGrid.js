@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DraggableGridItem from './DraggableGridItem';
 import Image from '../image/Image';
-import './Grid.css';
 
 class DragDropGrid extends React.Component {
     constructor(props) {
