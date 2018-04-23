@@ -2,8 +2,8 @@ jest.mock('axios');
 import Axios from 'axios';
 
 import React from 'react';
-import { updateProjectTitle, publishProject } from './projectActions';
-import { UPDATE_PROJECT_TITLE, UPDATE_PROJECT_URL, PUBLISH_PROJECT_ERROR } from './actionTypes';
+import { updateProjectTitle, publishProject, loadProject } from './projectActions';
+import { UPDATE_PROJECT_TITLE, UPDATE_PROJECT_URL, PUBLISH_PROJECT_ERROR, PROJECT_LOADED, LOAD_PROJECT_ERROR } from './actionTypes';
 
 describe('updateProjectTitle', () => {
 
@@ -20,7 +20,7 @@ describe('updateProjectTitle', () => {
 
 describe('publishProject', () => {
 
-    it('publishes the project and dispatches the updateProjectUrl action', () => {
+    it('publishes the project and dispatches the UPDATE_PROJECT_URL action', () => {
         Axios.post = jest.fn((url, data) => {
             return new Promise((resolve, reject) => {
                 resolve({ data: { id: "43110" } });
@@ -62,6 +62,69 @@ describe('publishProject', () => {
                 type: PUBLISH_PROJECT_ERROR,
                 message: "error message"
             });
+        });
+
+    });
+
+});
+
+describe('loadProject', () => {
+
+    const dummyProject = {
+        id:"43110",
+        title: "My Project",
+        files: [
+            {"file":{},"key":"test.png1511538471014","title":"test","url":"https://test.net/test/2935410a-ae06-4b6a-b0a2-7efa7e460a73.png"}
+        ]
+    }
+
+    it('loads the project and dispatches the PROJECT_LOADED action', () => {
+
+        Axios.get = jest.fn((url) => {
+            return new Promise((resolve, reject) => {
+                resolve({ data: dummyProject });
+            });
+        });
+
+        const dispatch = jest.fn();
+        const thunk = loadProject("https://load.com", "43110");
+
+        thunk(dispatch);
+
+        Axios.get().then(() => {
+            expect(Axios.get).toHaveBeenCalledWith("https://load.com", {params: { id: "43110"}});
+
+            expect(dispatch).toHaveBeenCalledWith({
+                type: PROJECT_LOADED,
+                project: dummyProject
+            })
+
+        });
+
+    });
+
+    it('dispatches the LOAD_PROJECT_ERROR action when loading fails', () => {
+
+        Axios.get = jest.fn((url) => {
+            return new Promise((resolve, reject) => {
+                reject({ response: { data: "error message"}});
+            });
+        });
+
+        const dispatch = jest.fn();
+        const thunk = loadProject("https://load.com", "43110");
+
+        thunk(dispatch);
+
+        Axios.get().then().catch(() => {
+            expect(Axios.get).toHaveBeenCalledWith("https://load.com", {params: { id: "43110"}});
+
+            expect(dispatch).toHaveBeenCalledWith({
+                type: LOAD_PROJECT_ERROR,
+                projectId: "43110",
+                error: "error message"
+            })
+
         });
 
     });

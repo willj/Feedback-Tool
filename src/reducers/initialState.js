@@ -4,5 +4,6 @@ export default {
     project: {
         url: '',
         error: ''
-    }
+    },
+    projects: {}
 };
