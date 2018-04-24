@@ -8,7 +8,7 @@ class Viewer extends React.Component{
         super(props);
 
         this.state = {
-            currentItemIndex: (!this.props.index || isNaN(this.props.index)) ? 0 : this.props.index
+            currentItemIndex: this.getLimitedBoundsIndex(this.props)
         };
     }
 
@@ -17,14 +17,24 @@ class Viewer extends React.Component{
     }
 
     componentWillReceiveProps(nextProps){
-        var next = nextProps.index;
+        this.setState({ 
+            currentItemIndex: this.getLimitedBoundsIndex(nextProps) 
+        });
+    }
 
-        if (isNaN(next)) next = 0;
+    getLimitedBoundsIndex(props){
+        let index = props.index || 0;
 
-        if (next < 0) next = nextProps.project.files.length - 1;
-        if (next > (nextProps.project.files.length - 1)) next = 0;
+        if (isNaN(index)) index = 0;
 
-        this.setState({ currentItemIndex: next });
+        if (props.project && props.project.files) {
+            if (index < 0) index = props.project.files.length - 1;
+            if (index > (props.project.files.length - 1)) index = 0;
+        } else {
+            index = 0;
+        }
+
+        return index;
     }
 
     nextPageLink(){
@@ -49,8 +59,8 @@ class Viewer extends React.Component{
         if (!this.props.project.id) {
             return (
                 <div>
-                    <h1>An error occured</h1>
-                    {this.props.project.error && <p>this.props.project.error</p>}
+                    <h1>An error occurred</h1>
+                    {this.props.project.error && <p>{this.props.project.error}</p>}
                 </div>
             );
         }
@@ -59,7 +69,8 @@ class Viewer extends React.Component{
             <div className="viewer">
                 <h1>{this.props.project.title}</h1>
                 <nav>
-                    <Link to={this.prevPageLink()}>Prev</Link> <Link to={this.nextPageLink()}>Next</Link>
+                    <Link to={this.prevPageLink()} className="previous-image">Prev</Link> 
+                    <Link to={this.nextPageLink()} className="next-image">Next</Link>
                 </nav>
                 <h2>{this.props.project.files[this.state.currentItemIndex].title}</h2>
                 <img src={this.props.project.files[this.state.currentItemIndex].url} alt="" />
