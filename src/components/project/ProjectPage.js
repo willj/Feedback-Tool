@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
     return {
         title: state.title,
         files: state.files,
+        fileCount: state.files.length,
         projectUrl: state.project.url,
         projectError: state.project.error
     };

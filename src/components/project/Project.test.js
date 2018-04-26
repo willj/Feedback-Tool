@@ -7,7 +7,7 @@ describe('<Project />', () => {
     const fn = () => {};
 
     it('renders a text box with the provided title', () => {
-        const wrapper = shallow(<Project title="A dummy title" onTitleChange={fn} projectUrl="" projectError="" onPublish={fn} />);
+        const wrapper = shallow(<Project title="A dummy title" onTitleChange={fn} projectUrl="" projectError="" onPublish={fn} fileCount={1} />);
 
         expect(wrapper.find('input').length).toBe(1);
         expect(wrapper.find('input').prop('value')).toBe('A dummy title');
@@ -16,7 +16,7 @@ describe('<Project />', () => {
     it('calls onTitleChange when the title textbox value is changed', () => {
         const titleChange = jest.fn();
 
-        const wrapper = shallow(<Project title="A dummy title" projectUrl="" projectError="" onTitleChange={titleChange} onPublish={fn} />);
+        const wrapper = shallow(<Project title="A dummy title" projectUrl="" projectError="" onTitleChange={titleChange} onPublish={fn} fileCount={1} />);
 
         wrapper.find('input').simulate('change', { target: { value: "Hello World" }});
 
@@ -24,7 +24,7 @@ describe('<Project />', () => {
     });
 
     it('displays a publish button only when no project URL is set', () => {
-        const wrapper = shallow(<Project projectUrl="" title="test" projectError="" onTitleChange={fn} onPublish={fn} />);
+        const wrapper = shallow(<Project projectUrl="" title="test" projectError="" onTitleChange={fn} onPublish={fn} fileCount={1} />);
 
         expect(wrapper.find('button').first().text()).toBe("Publish");
 
@@ -36,7 +36,7 @@ describe('<Project />', () => {
     it('calls onPublish when the publish button is clicked', () => {
         const onPublish = jest.fn();
 
-        const wrapper = shallow(<Project onPublish={onPublish} projectUrl="" title="test" projectError="" onTitleChange={fn} />);
+        const wrapper = shallow(<Project onPublish={onPublish} projectUrl="" title="test" projectError="" onTitleChange={fn} fileCount={1} />);
 
         wrapper.find('button').simulate('click', {});
 
@@ -44,7 +44,7 @@ describe('<Project />', () => {
     });
 
     it('displays the project url when a project URL is set', () => {
-        const wrapper = shallow(<Project projectUrl="" title="test" projectError="" onTitleChange={fn} onPublish={fn} />);
+        const wrapper = shallow(<Project projectUrl="" title="test" projectError="" onTitleChange={fn} onPublish={fn} fileCount={1} />);
         let projectUrl = "";
 
         expect(wrapper.contains(<p>Share your project: {projectUrl}</p>)).toBe(false);
@@ -55,7 +55,7 @@ describe('<Project />', () => {
     });
 
     it('displays the project error if set', () => {
-        const wrapper = shallow(<Project projectError="" projectUrl="" title="test" onTitleChange={fn} onPublish={fn} />);
+        const wrapper = shallow(<Project projectError="" projectUrl="" title="test" onTitleChange={fn} onPublish={fn} fileCount={1} />);
 
         expect(wrapper.find('.project-error').length).toBe(0);
 

@@ -1,0 +1,7 @@
+.viewer{
+    text-align: center;
+}
+
+.viewer nav, .viewer nav a {
+    margin: 20px;
+}

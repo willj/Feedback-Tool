@@ -1,0 +1,75 @@
+.get-started {
+    margin: 70px auto;
+    width: 100%;
+    max-width: 600px;
+    height: 360px;
+    text-align: center;
+    animation: pulse 0.8s ease infinite;
+}
+
+.get-started h2 {
+    display: block;
+    background-color: #00bcf2;
+    color: #ffffff;
+    font-weight: normal;
+    margin: 0;
+    padding: 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transform: scale(101%);
+}
+
+.get-started-inner {
+    padding: 20px;
+    border: 2px dotted #00bcf2;
+    border-top: none;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 100%;
+    height: 100%;
+    color: #808080;
+}
+
+.get-started-smallprint {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    font-size: 0.8em;
+    padding: 10px 20px;
+}
+
+@keyframes pulse{
+    0% { transform: scale(100%); }
+    100% { transform: scale(95%); }
+}
+
+.gs-file{
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid #cecece;
+    background-color: #ffffff;
+    margin: 50px 20px;
+    width: 60px;
+    height: 80px;
+    opacity: 0.8;
+}
+
+.gs-file:nth-of-type(2){
+    transform: scale(1.5);
+}
+
+.gs-file span{
+    display: block;
+    width: 50px;
+    height: 40px;
+    background-color: #00bcf2;
+    margin: 5px auto;
+    border-radius: 2px;
+}
+
+@media screen and (max-width:400px){
+    .gs-file:nth-of-type(2){
+        display: none;
+    }
+}

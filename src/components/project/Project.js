@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import Files from './FilesContainer';
 import './Project.css';
 
-const Project = ({title, projectUrl, projectError, onTitleChange, onPublish}) => {
-
+const Project = ({title, projectUrl, projectError, fileCount, onTitleChange, onPublish}) => {
     return (
-        <div>
-            <h1>Project page</h1>
-            <input type="text" value={title} onChange={(e) => onTitleChange(e.target.value)}  className="project-title" placeholder="Project title" />
-            
-            {projectUrl === "" && 
-                <button onClick={onPublish}>Publish</button>  
+        <main>
+            {projectUrl === "" && fileCount > 0 &&
+                <section>
+                    <input type="text" value={title} onChange={(e) => onTitleChange(e.target.value)}  className="project-title" placeholder="Project title" />
+                    <button onClick={onPublish}>Publish</button>  
+                </section>
             }
 
             {projectUrl !== "" && 
@@ -23,7 +22,7 @@ const Project = ({title, projectUrl, projectError, onTitleChange, onPublish}) =>
             }
 
             <Files />
-        </div>
+        </main>
     );
 }
 
@@ -33,6 +32,7 @@ Project.propTypes = {
     title: PropTypes.string.isRequired,
     projectUrl: PropTypes.string.isRequired,
     projectError: PropTypes.string.isRequired,
+    fileCount: PropTypes.number.isRequired,
     onTitleChange: PropTypes.func.isRequired,
     onPublish: PropTypes.func.isRequired
 }

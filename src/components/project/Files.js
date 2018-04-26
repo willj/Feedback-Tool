@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FileUploadHandler from '../fileupload/FileUploadHandler';
 import DragDropGrid from '../grid/DragDropGrid';
+import Placeholder from '../grid/Placeholder';
 
 const Files = ({files, onNewFile, onChange, onMove, onDelete}) => {
     return (
         <FileUploadHandler onNewFile={onNewFile}>
             <DragDropGrid items={files} onChange={onChange} onMove={onMove} onDelete={onDelete}>
-                {files.length === 0 && <h2>Drop files here</h2> }
+                <Placeholder fileCount={files.length} />
             </DragDropGrid>
         </FileUploadHandler>
     );

@@ -41,7 +41,6 @@ class DragDropGrid extends React.Component {
     render(){
         return (
             <div className="grid" onDragOver={this.gridDragOver}>
-                { this.props.children }
                 {
                     this.props.items.map((item, index) => {
                         return (
@@ -54,6 +53,7 @@ class DragDropGrid extends React.Component {
                         );
                     })
                 }
+                { this.props.children }
             </div>
         );
     }
