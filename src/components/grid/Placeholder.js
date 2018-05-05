@@ -15,12 +15,17 @@ const Placeholder = ({fileCount}) => {
                         <div className="gs-file"><span></span></div>
                         <div className="gs-file"><span></span></div>
 
-                        <p className="get-started-smallprint">You can upload jpg, png, gif and webp files, paste screenshots or other images from your clipboard, you can even drag a folder in if your browser supports it.</p>
+                        <p className="gs-smallprint">
+                            You can upload jpg, png, gif and webp files, paste screenshots or other images from your clipboard, you can even drag a folder in if your browser supports it.
+                        </p>
                     </div>
                 </div>
             }
             {fileCount > 0 && 
-                <div className="item">upload placeholder</div>
+                <div className="item placeholder-item">
+                    <div className="gs-file"><span></span></div>
+                    <p className="gs-smallprint">You can upload jpg, png, gif and webp files, paste screenshots or other images from your clipboard, you can even drag a folder in if your browser supports it.</p>
+                </div>
             }
         </React.Fragment>
     )

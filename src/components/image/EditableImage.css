@@ -1,23 +1,27 @@
 .edit-image-title {
     display: block;
     box-sizing: border-box;
-    width: 100%;
+    width: 220px;
     border: 1px solid transparent;
-    margin: 10px 0;
+    border-bottom: 1px dotted #c0c0c0;
+    margin: 10px auto;
     padding: 5px 2px;
+    color: #808080;
 }
 
 .edit-image-title:hover {
     border: 1px solid #cecece;
+    color: inherit;
 }
 
 .edit-image-title:focus {
     border: 1px solid #333333;
+    color: inherit;
 }
 
 .edit-image-image {
-    width: 190px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     background-position: center center;
     background-size: cover;
     box-shadow: 0 0 5px #cecece;
@@ -33,12 +37,20 @@
     padding: 3px 6px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 0.875em;
-    opacity: 0.8;
     cursor: pointer;
+    opacity: 0.6;
 }
 
 .edit-image-delete:hover {
     background-color: #da534c;
     color: #ffffff;
     opacity: 1;
+}
+
+.item:hover .edit-image-delete {
+    opacity: 1;
+}
+
+.item:hover .edit-image-title {
+    color: inherit;
 }

@@ -4,7 +4,6 @@
     max-width: 600px;
     height: 360px;
     text-align: center;
-    animation: pulse 0.8s ease infinite;
 }
 
 .get-started h2 {
@@ -31,17 +30,12 @@
     color: #808080;
 }
 
-.get-started-smallprint {
+.gs-smallprint {
     position: absolute;
     bottom: 0;
     left:0;
     font-size: 0.8em;
     padding: 10px 20px;
-}
-
-@keyframes pulse{
-    0% { transform: scale(100%); }
-    100% { transform: scale(95%); }
 }
 
 .gs-file{
@@ -72,4 +66,16 @@
     .gs-file:nth-of-type(2){
         display: none;
     }
+}
+
+.placeholder-item {
+    text-align: center;
+    color: #808080;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+}
+
+.placeholder-item:hover {
+    opacity: 1;
+    cursor: default;
 }

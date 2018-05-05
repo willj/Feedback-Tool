@@ -24,11 +24,11 @@ class EditableImage extends React.Component{
     render(){
         let {image, index, onDelete} = this.props;
         return (
-            <div>
+            <React.Fragment>
                 <input type="text" placeholder="Add a title here" value={image.title} className="edit-image-title" onChange={this.onChange} draggable onDragStart={this.preventDrag} />
                 <div className="edit-image-image" style={{ backgroundImage: 'url(' + image.url + ')' }}></div>
                 <button className="edit-image-delete" onClick={() => { onDelete(index); }}>Delete</button>
-            </div>
+            </React.Fragment>
         );
     }
 

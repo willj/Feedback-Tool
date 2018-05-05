@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as FileTypes from './SupportedFileTypes';
+import './FileUpLoadHandler.css';
 
 class FileUploadHandler extends React.Component {
 
