@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Project from './Project';
+import Files from './FilesContainer';
+import ShareProject from './ShareProject';
 
 describe('<Project />', () => {
 
@@ -43,15 +45,15 @@ describe('<Project />', () => {
         expect(onPublish).toHaveBeenCalledTimes(1);
     });
 
-    it('displays the project url when a project URL is set', () => {
+    it('displays <ShareProject /> when a project URL is set', () => {
         const wrapper = shallow(<Project projectUrl="" title="test" projectError="" onTitleChange={fn} onPublish={fn} fileCount={1} />);
-        let projectUrl = "";
+        let projectUrl = "http://project.com";
 
-        expect(wrapper.contains(<p>Share your project: {projectUrl}</p>)).toBe(false);
+        expect(wrapper.contains(<ShareProject projectUrl={projectUrl} />)).toBe(false);
 
-        projectUrl = "http://project.com";
         wrapper.setProps({ projectUrl: projectUrl});
-        expect(wrapper.contains(<p>Share your project: {projectUrl}</p>)).toBe(true);
+        
+        expect(wrapper.contains(<ShareProject projectUrl={projectUrl} />)).toBe(true);
     });
 
     it('displays the project error if set', () => {
@@ -66,4 +68,16 @@ describe('<Project />', () => {
         expect(wrapper.find('.project-error').length).toBe(1);
         expect(wrapper.find('.project-error').first().text()).toBe(errorMessage);
     });
+
+    it('displays <Files /> only when no project URL is set', () => {
+
+        const wrapper = shallow(<Project projectError="" projectUrl="" title="test" onTitleChange={fn} onPublish={fn} fileCount={0} />);
+
+        expect(wrapper.contains(<Files />)).toBe(true);
+
+        wrapper.setProps({ projectUrl: 'https://project.com/test' });
+
+        expect(wrapper.contains(<Files />)).toBe(false);
+    });
+
 });

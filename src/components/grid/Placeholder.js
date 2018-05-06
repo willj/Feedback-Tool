@@ -6,16 +6,16 @@ const Placeholder = ({fileCount}) => {
     return (
         <React.Fragment>
             {fileCount === 0 && 
-                <div className="get-started">
+                <div className="info-panel get-started">
                     <h2>Drop images here to get started</h2>
-                    <div className="get-started-inner">
+                    <div className="info-panel-inner">
                         <p>Drop or paste your images here to create your project.</p>
                         
                         <div className="gs-file"><span></span></div>
                         <div className="gs-file"><span></span></div>
                         <div className="gs-file"><span></span></div>
 
-                        <p className="gs-smallprint">
+                        <p className="info-panel-smallprint">
                             You can upload jpg, png, gif and webp files, paste screenshots or other images from your clipboard, you can even drag a folder in if your browser supports it.
                         </p>
                     </div>

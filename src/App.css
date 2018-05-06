@@ -18,6 +18,11 @@ div {
     display: block;
 }
 
+a {
+    color: #00bcf2;
+    text-decoration: none;
+}
+
 .app-title {
     text-align: center;
     color: #333333;
@@ -33,4 +38,45 @@ div {
     border-bottom: 2px solid #00bcf2;
     display: block;
     margin: 0 auto;
+}
+
+.info-panel {
+    margin: 70px auto;
+    width: 100%;
+    max-width: 600px;
+    height: 360px;
+    text-align: center;
+}
+
+.info-panel h2 {
+    display: block;
+    background-color: #00bcf2;
+    color: #ffffff;
+    font-weight: normal;
+    margin: 0;
+    padding: 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transform: scale(101%);
+}
+
+.info-panel-inner {
+    padding: 20px;
+    border: 1px solid #00bcf2;
+    border-top: none;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 100%;
+    height: 100%;
+    color: #808080;
+}
+
+.info-panel-smallprint {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    font-size: 0.8em;
+    padding: 10px 20px;
 }

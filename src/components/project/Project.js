@@ -1,27 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Files from './FilesContainer';
+import ShareProject from './ShareProject';
 import './Project.css';
 
 const Project = ({title, projectUrl, projectError, fileCount, onTitleChange, onPublish}) => {
     return (
         <main>
             {projectUrl === "" && fileCount > 0 &&
-                <section>
+                <section className="publish-project-wrapper">
                     <input type="text" value={title} onChange={(e) => onTitleChange(e.target.value)}  className="project-title" placeholder="Project title" />
-                    <button onClick={onPublish}>Publish</button>  
+                    <button onClick={onPublish} className="publish-button">Publish</button>  
                 </section>
             }
 
-            {projectUrl !== "" && 
-                <p>Share your project: {projectUrl}</p>    
-            } 
+            {projectUrl !== "" && <ShareProject projectUrl={projectUrl} />} 
 
             {projectError !== "" && 
                 <p className="project-error">{projectError}</p>    
             }
 
-            <Files />
+            {projectUrl === "" && <Files />}
         </main>
     );
 }
