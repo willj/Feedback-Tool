@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import ProjectNav from './ProjectNav';
 import './Viewer.css';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faExpand, faCompress } from '@fortawesome/fontawesome-free-solid';
 
 class Viewer extends React.Component{
 
@@ -38,20 +40,6 @@ class Viewer extends React.Component{
         return index;
     }
 
-    nextPageLink(){
-        let next = this.state.currentItemIndex + 1;
-        if (next >= this.props.project.files.length) next = 0;
-
-        return `/view/${this.props.projectId}/${next}`;
-    }
-
-    prevPageLink(){
-        let next = this.state.currentItemIndex - 1;
-        if (next < 0) next = this.props.project.files.length - 1;
-
-        return `/view/${this.props.projectId}/${next}`;
-    }
-
     render(){
         if (!this.props.project) {
             return <h1>Loading...</h1>;
@@ -67,15 +55,23 @@ class Viewer extends React.Component{
         }
 
         return (
-            <div className="viewer">
-                <h1>{this.props.project.title}</h1>
-                <nav>
-                    <Link to={this.prevPageLink()} className="previous-image">Prev</Link> 
-                    <Link to={this.nextPageLink()} className="next-image">Next</Link>
-                </nav>
-                <h2>{this.props.project.files[this.state.currentItemIndex].title}</h2>
-                <img src={this.props.project.files[this.state.currentItemIndex].url} alt="" />
-            </div>
+            <React.Fragment>
+                <header className="viewer-header">
+                    <h1>{this.props.project.title}</h1>   
+
+                    <ProjectNav currentIndex={this.state.currentItemIndex} numberOfFiles={this.props.project.files.length} projectId={this.props.projectId} />
+                </header>
+                <main className="viewer">
+                    <h2 className="image-title">{this.props.project.files[this.state.currentItemIndex].title}</h2>
+                    {/* <nav>
+                        <button><FontAwesomeIcon icon={faExpand} /></button>
+                        <button><FontAwesomeIcon icon={faCompress} /></button>
+                    </nav> */}
+                    <div>
+                        <img src={this.props.project.files[this.state.currentItemIndex].url} alt="" />
+                    </div>
+                </main>
+            </React.Fragment>
         );
     }
 }

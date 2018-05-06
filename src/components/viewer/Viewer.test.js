@@ -72,33 +72,4 @@ describe('<Viewer />', () => {
         expect(wrapper.state('currentItemIndex')).toBe(0);
     });
 
-    it('next and previous links are present with the correct index values', () => {
-        const project = {
-            title: "project title",
-            id: "43110",
-            files: [
-                {title: "title", url: "test.jpg"},
-                {title: "title", url: "test.jpg"},
-                {title: "title", url: "test.jpg"}
-            ]
-        };
-
-        const wrapper = shallow(<Viewer index={0} project={project} loadProject={fn} projectId="43110" />);
-
-        expect(wrapper.find('.previous-image').first().prop('to')).toBe('/view/43110/2');
-        expect(wrapper.find('.next-image').first().prop('to')).toBe('/view/43110/1');
-
-        wrapper.setProps({index: 1});
-        expect(wrapper.find('.previous-image').first().prop('to')).toBe('/view/43110/0');
-        expect(wrapper.find('.next-image').first().prop('to')).toBe('/view/43110/2');
-
-        wrapper.setProps({index: 2});
-        expect(wrapper.find('.previous-image').first().prop('to')).toBe('/view/43110/1');
-        expect(wrapper.find('.next-image').first().prop('to')).toBe('/view/43110/0');
-
-        wrapper.setProps({index: 10});
-        expect(wrapper.find('.previous-image').first().prop('to')).toBe('/view/43110/2');
-        expect(wrapper.find('.next-image').first().prop('to')).toBe('/view/43110/1');
-
-    });
 });

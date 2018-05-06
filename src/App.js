@@ -7,9 +7,6 @@ import './App.css';
 const App = () => {
     return (
         <React.Fragment>
-            <header>
-                <h1 className="app-title">Feedback</h1>
-            </header>
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Switch>
                     <Route exact path="/" component={ProjectPage} />
