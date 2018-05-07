@@ -24,7 +24,7 @@ const ProjectNav = ({currentIndex, numberOfFiles, projectId}) => {
     return (
         <nav>
             {prevPageLink()}             
-            {/* <Link to={} className="nav-button view-all"><FontAwesomeIcon icon={faThLarge} /></Link> */}
+            <Link to={`/view/gallery/${projectId}`} className="nav-button view-all"><FontAwesomeIcon icon={faThLarge} /></Link>
             {nextPageLink()}
         </nav>
     );
