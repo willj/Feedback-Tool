@@ -72,4 +72,28 @@ describe('<Viewer />', () => {
         expect(wrapper.state('currentItemIndex')).toBe(0);
     });
 
+    it('toggles between full size and restricted width image states', ()=> {
+        const project = {
+            title: "project title",
+            id: "43110",
+            files: [
+                {title: "title", url: "test.jpg"},
+                {title: "title", url: "test1.jpg"},
+                {title: "title", url: "test2.jpg"}
+            ]
+        };
+
+        const wrapper = shallow(<Viewer index={2} project={project} loadProject={fn} projectId="43110" />);
+
+        expect(wrapper.state().fitToScreen).toBe(false);
+
+        wrapper.find('.view-mode-toggle').last().simulate('click', {});
+        expect(wrapper.state().fitToScreen).toBe(true);
+        expect(wrapper.find('img').first().props().className).toBe('fit-width');
+
+        wrapper.find('.view-mode-toggle').first().simulate('click', {});
+        expect(wrapper.state().fitToScreen).toBe(false);
+        expect(wrapper.find('img').first().props().className).toBe('');
+    });
+
 });

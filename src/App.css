@@ -3,6 +3,7 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #808080;
+    overflow-y: scroll;
 }
 
 * {

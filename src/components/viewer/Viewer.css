@@ -57,3 +57,40 @@
     width: auto;
     padding: 10px 18px;
 }
+
+.view-mode-toggle {
+    border: 1px solid #c0c0c0;
+    color: #808080;
+    background-color: #ffffff;
+    padding: 6px;
+    font-size: 1.2em;
+    line-height: 1em;
+    margin: 10px 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-mode-toggle:hover {
+    background-color: #34d0fc;
+    color: #ffffff;
+}
+
+.view-mode-toggle:first-of-type {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.view-mode-toggle:last-of-type {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.active-view-mode {
+    background-color: #34d0fc;
+    color: #ffffff;
+}
+
+.fit-width {
+    max-width: 100%;
+}

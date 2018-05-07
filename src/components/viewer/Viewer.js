@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProjectNav from './ProjectNav';
+import Classnames from 'classnames';
 import './Viewer.css';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faExpand, faCompress } from '@fortawesome/fontawesome-free-solid';
+
+
 
 class Viewer extends React.Component{
 
@@ -11,8 +14,12 @@ class Viewer extends React.Component{
         super(props);
 
         this.state = {
-            currentItemIndex: this.getLimitedBoundsIndex(this.props)
+            currentItemIndex: this.getLimitedBoundsIndex(this.props),
+            fitToScreen: false
         };
+
+        this.fitToScreen = this.fitToScreen.bind(this);
+        this.showFullsize = this.showFullsize.bind(this);
     }
 
     componentDidMount(){
@@ -40,6 +47,14 @@ class Viewer extends React.Component{
         return index;
     }
 
+    fitToScreen(){
+        this.setState({ fitToScreen: true });
+    }
+
+    showFullsize(){
+        this.setState({ fitToScreen: false });
+    }
+
     render(){
         if (!this.props.project) {
             return <h1>Loading...</h1>;
@@ -63,13 +78,14 @@ class Viewer extends React.Component{
                 </header>
                 <main className="viewer">
                     <h2 className="image-title">{this.props.project.files[this.state.currentItemIndex].title}</h2>
-                    {/* <nav>
-                        <button><FontAwesomeIcon icon={faExpand} /></button>
-                        <button><FontAwesomeIcon icon={faCompress} /></button>
-                    </nav> */}
-                    <div>
-                        <img src={this.props.project.files[this.state.currentItemIndex].url} alt="" />
-                    </div>
+                    <nav>
+                        <button onClick={this.showFullsize} className={Classnames("view-mode-toggle", {"active-view-mode": !this.state.fitToScreen})}><FontAwesomeIcon icon={faExpand} /></button>
+                        <button onClick={this.fitToScreen} className={Classnames("view-mode-toggle", {"active-view-mode": this.state.fitToScreen})}><FontAwesomeIcon icon={faCompress} /></button>
+                    </nav>
+
+                    <img src={this.props.project.files[this.state.currentItemIndex].url} 
+                        alt={this.props.project.files[this.state.currentItemIndex].title} 
+                        className={Classnames({"fit-width": this.state.fitToScreen})} />
                 </main>
             </React.Fragment>
         );
